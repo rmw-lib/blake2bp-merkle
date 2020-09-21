@@ -1,9 +1,24 @@
 #!/usr/bin/env coffee
-import merkle from '@rmw/merkle'
-# import {merkle as Xxx} from '@rmw/merkle'
+import {Hash,BufferStreamLi,merkle} from '@rmw/merkle'
 import test from 'tape-catch'
+import fs from 'fs'
+import blake from 'blake3'
+
+hasher = =>
+  blake.createHash()
 
 test 'merkle', (t)=>
-  t.equal merkle(1,2),3
-  # t.deepEqual Xxx([1],[2]),[3]
+  blake_stream = new Hash(hasher)
+  bsli = new BufferStreamLi()
+
+  bsli.on 'finish', (r)->
+    console.log blake_stream.total
+    console.log @_
+    console.log merkle(@_)
+    console.log @_.length
+
+  fs.createReadStream(
+    `import.meta.url.slice(7)`
+  ).pipe(blake_stream).pipe(bsli)
+
   t.end()

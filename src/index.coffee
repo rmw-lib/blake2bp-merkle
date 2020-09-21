@@ -1,19 +1,16 @@
 #!/usr/bin/env coffee
 
-import blake from 'blake3'
 import {Writable,Transform} from 'stream'
 
-hasher = =>
-  blake.createHash()
 
 export MB = 1048576
 
-export class Blake2 extends Transform
-  constructor:->
+export class Hash extends Transform
+  constructor:(@hasher)->
     super()
     @size = 0
-    @hash = hasher()
     @total = 0
+    @hash = @hasher()
 
   _transform:(buf,enc,next)->
     {size, hash} = @
@@ -29,7 +26,7 @@ export class Blake2 extends Transform
       ).digest()
       @total += MB
       @size = 0
-      @hash = hasher()
+      @hash = @hasher()
       if buf_len > diff
         return @_transform(buf.slice(diff), enc, next)
     next()
