@@ -16,7 +16,7 @@ npm install @rmw/merkle
 
 ## 使用
 
-```
+```coffee
 #!/usr/bin/env coffee
 import {Hash,BufferStreamLi,merkle} from '@rmw/merkle'
 import test from 'tape-catch'
