@@ -48,7 +48,7 @@ export class BufferStreamLi extends Writable
   # _final: (next)->
   #   next()
 
-export merkle = (li)=>
+export merkle = (hasher, li)=>
   li = li.slice()
   len = li.length
   while len > 1

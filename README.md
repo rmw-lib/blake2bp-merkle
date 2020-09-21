@@ -44,7 +44,7 @@ test 'merkle', (t)=>
   bsli.on 'finish', (r)->
     console.log blake_stream.total
     console.log @_
-    console.log merkle(@_)
+    console.log merkle(hasher, @_)
     console.log @_.length
 
   fs.createReadStream(
