@@ -4,8 +4,19 @@ import test from 'tape-catch'
 import fs from 'fs'
 import blake from 'blake3'
 
+class Hasher
+  constructor:->
+    @_ = blake.createHash()
+
+  update:(buf)->
+    @_.update buf
+
+  digest:->
+    h = @_.digest()
+    h
+
 hasher = =>
-  blake.createHash()
+  new Hasher()
 
 test 'merkle', (t)=>
   blake_stream = new Hash(hasher)
