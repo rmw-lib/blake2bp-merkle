@@ -64,7 +64,7 @@ export merkle = (hasher, li)=>
       t.push hasher().update(Buffer.concat [li[n+1],li[n]]).digest()
     # console.log t
     # console.log "---"
-    len = len/2
+    len = t.length
     li = t
   return li[0]
 
