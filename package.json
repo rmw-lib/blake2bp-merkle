@@ -1,0 +1,31 @@
+{
+  "name": "@rmw/merkle",
+  "version": "0.0.0",
+  "repository": "https://github.com/rmw-lib/merkle",
+  "author": "i@rmw.link",
+  "license": "MulanPSL-2.0",
+  "exports": {
+    ".": "./lib/index.js",
+    "./": "./lib/"
+  },
+  "files": [
+    "/lib"
+  ],
+  "dependencies": {
+    "@rmw/console": "^0.0.6",
+    "blake3": "^2.1.4"
+  },
+  "devDependencies": {
+    "@rmw/md-include": "^0.4.5",
+    "coffeescript": "^2.5.1",
+    "colortape": "^0.1.2",
+    "nodemon": "^2.0.4",
+    "source-map-support": "^0.5.19",
+    "tape": "^5.0.1",
+    "tape-catch": "^1.0.6"
+  },
+  "scripts": {
+    "prepare": "./.git/hooks/pre-commit && rm -rf lib && rsync -av --include='*/' --include='*.js' --include='*.mjs' --exclude=* src/ lib/ && npx coffee --compile --output lib src/"
+  },
+  "type": "module"
+}
