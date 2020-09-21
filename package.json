@@ -1,6 +1,6 @@
 {
   "name": "@rmw/merkle",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/rmw-lib/merkle",
   "author": "i@rmw.link",
   "license": "MulanPSL-2.0",
